@@ -1,0 +1,10 @@
+{
+    "[javascript]": {
+        "files.eol": "\n"
+    },
+    "mochaExplorer.files": "test/**/*.js",
+    "mochaExplorer.require": [
+        "@babel/register",
+        "core-js"
+    ]
+}

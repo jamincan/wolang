@@ -1,0 +1,44 @@
+{
+  "name": "wolang",
+  "version": "1.0.0",
+  "description": "A human-friendly language for sharing cycling workouts.",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "babel src -d dist --presets=@babel/preset-env",
+    "test": "mocha --require core-js --require @babel/register --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamincan/wolang.git"
+  },
+  "keywords": [
+    "wolang",
+    "parser"
+  ],
+  "author": "Jeremy Haak <jeremyrhaak@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamincan/wolang/issues"
+  },
+  "homepage": "https://github.com/jamincan/wolang#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/eslint-parser": "^7.12.1",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "core-js": "^3.8.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.2.0",
+    "mocha": "^8.2.1",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {}
+}
