@@ -110,58 +110,37 @@ describe('Tokenizer', () => {
     it('Watts Intensity', () => {
       tokenizer.init(`21w30Watts4watt`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = [
-        'INT',
-        'INTENSITY_WATTS',
-        'INT',
-        'INTENSITY_WATTS',
-        'INT',
-        'INTENSITY_WATTS',
-      ];
+      const expected = ['INT', 'W', 'INT', 'W', 'INT', 'W'];
       assert.deepStrictEqual(actual, expected);
     });
     it('Percent Intensity', () => {
       tokenizer.init(`21%`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = ['INT', 'INTENSITY_PERCENT'];
+      const expected = ['INT', '%'];
       assert.deepStrictEqual(actual, expected);
     });
     it('Duration - seconds', () => {
       tokenizer.init(`21Second30s 45 secs`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = [
-        'INT',
-        'DURATION_SEC',
-        'INT',
-        'DURATION_SEC',
-        'INT',
-        'DURATION_SEC',
-      ];
+      const expected = ['INT', 'SEC', 'INT', 'SEC', 'INT', 'SEC'];
       assert.deepStrictEqual(actual, expected);
     });
     it('Duration - minutes', () => {
       tokenizer.init(`21mIn30 minutes 45 mins`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = [
-        'INT',
-        'DURATION_MIN',
-        'INT',
-        'DURATION_MIN',
-        'INT',
-        'DURATION_MIN',
-      ];
+      const expected = ['INT', 'MIN', 'INT', 'MIN', 'INT', 'MIN'];
       assert.deepStrictEqual(actual, expected);
     });
     it('Duration - hours', () => {
       tokenizer.init(`21hr 14 Hours`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = ['INT', 'DURATION_HOUR', 'INT', 'DURATION_HOUR'];
+      const expected = ['INT', 'HR', 'INT', 'HR'];
       assert.deepStrictEqual(actual, expected);
     });
     it('comma', () => {
       tokenizer.init(`21, 15`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = ['INT', 'COMMA', 'INT'];
+      const expected = ['INT', ',', 'INT'];
       assert.deepStrictEqual(actual, expected);
     });
   });
@@ -227,38 +206,13 @@ describe('Tokenizer', () => {
     });
     it('line/col in tokens', () => {
       tokenizer.init(`2101 "Bob"\n  21.1`);
-      const actual = Array.from(tokenizer);
+      const actual = Array.from(tokenizer).map((token) => [token.line, token.column]);
       const expected = [
-        {
-          type: 'INT',
-          value: '2101',
-          line: 0,
-          column: 0,
-        },
-        {
-          type: 'STRING',
-          value: '"Bob"',
-          line: 0,
-          column: 5,
-        },
-        {
-          type: 'NEWLINE',
-          value: '\n',
-          line: 0,
-          column: 10,
-        },
-        {
-          type: 'INDENT',
-          value: undefined,
-          line: 1,
-          column: 0,
-        },
-        {
-          type: 'FLOAT',
-          value: '21.1',
-          line: 1,
-          column: 2,
-        },
+        [0, 0],
+        [0, 5],
+        [0, 10],
+        [1, 0],
+        [1, 2],
       ];
       assert.deepStrictEqual(actual, expected);
     });
