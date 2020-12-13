@@ -79,6 +79,10 @@ describe('Tokenizer', () => {
       const expected = ['INT', 'STRING'];
       assert.deepStrictEqual(actual, expected);
     });
+    it('throws error with tab at start', () => {
+      tokenizer.init(`\t20\n 30\n`);
+      assert.throws(() => Array.from(tokenizer));
+    });
   });
   describe('Comments', () => {
     it('Full-line comment', () => {
