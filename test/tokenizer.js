@@ -207,23 +207,60 @@ describe('Tokenizer', () => {
   });
   describe('Line and Columns #s', () => {
     it('0,0', () => {
-      tokenizer.init(`2101 "Bob"\nTest`);
+      tokenizer.init(`2101 "Bob"\n21.1`);
       assert.strictEqual(tokenizer.line, 0);
       assert.strictEqual(tokenizer.column, 0);
     });
     it('0,4', () => {
-      tokenizer.init(`2101 "Bob"\nTest`);
+      tokenizer.init(`2101 "Bob"\n21.1`);
       tokenizer.next();
       assert.strictEqual(tokenizer.line, 0);
       assert.strictEqual(tokenizer.column, 4);
     });
     it('1,0', () => {
-      tokenizer.init(`2101 "Bob"\nTest`);
+      tokenizer.init(`2101 "Bob"\n21.1`);
       tokenizer.next();
       tokenizer.next();
       tokenizer.next();
       assert.strictEqual(tokenizer.line, 1);
       assert.strictEqual(tokenizer.column, 0);
+    });
+    it('line/col in tokens', () => {
+      tokenizer.init(`2101 "Bob"\n  21.1`);
+      const actual = Array.from(tokenizer);
+      const expected = [
+        {
+          type: 'INT',
+          value: '2101',
+          line: 0,
+          column: 0,
+        },
+        {
+          type: 'STRING',
+          value: '"Bob"',
+          line: 0,
+          column: 5,
+        },
+        {
+          type: 'NEWLINE',
+          value: '\n',
+          line: 0,
+          column: 10,
+        },
+        {
+          type: 'INDENT',
+          value: undefined,
+          line: 1,
+          column: 0,
+        },
+        {
+          type: 'FLOAT',
+          value: '21.1',
+          line: 1,
+          column: 2,
+        },
+      ];
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });
