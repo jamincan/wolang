@@ -94,11 +94,74 @@ describe('Tokenizer', () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
-  describe('Repeats', () => {
-    it('x and X mark a repeat', () => {
+  describe('Markers', () => {
+    it('x or X are a REPEAT', () => {
       tokenizer.init(`21x32X`);
       const actual = Array.from(tokenizer).map((token) => token.type);
       const expected = ['INT', 'REPEAT', 'INT', 'REPEAT'];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('/ marks a CYCLE, > marks a RAMP', () => {
+      tokenizer.init(`21>32/40`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = ['INT', 'RAMP', 'INT', 'CYCLE', 'INT'];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('Watts Intensity', () => {
+      tokenizer.init(`21w30Watts4watt`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = [
+        'INT',
+        'INTENSITY_WATTS',
+        'INT',
+        'INTENSITY_WATTS',
+        'INT',
+        'INTENSITY_WATTS',
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('Percent Intensity', () => {
+      tokenizer.init(`21%`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = ['INT', 'INTENSITY_PERCENT'];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('Duration - seconds', () => {
+      tokenizer.init(`21Second30s 45 secs`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = [
+        'INT',
+        'DURATION_SEC',
+        'INT',
+        'DURATION_SEC',
+        'INT',
+        'DURATION_SEC',
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('Duration - minutes', () => {
+      tokenizer.init(`21mIn30 minutes 45 mins`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = [
+        'INT',
+        'DURATION_MIN',
+        'INT',
+        'DURATION_MIN',
+        'INT',
+        'DURATION_MIN',
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('Duration - hours', () => {
+      tokenizer.init(`21hr 14 Hours`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = ['INT', 'DURATION_HOUR', 'INT', 'DURATION_HOUR'];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('comma', () => {
+      tokenizer.init(`21, 15`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = ['INT', 'COMMA', 'INT'];
       assert.deepStrictEqual(actual, expected);
     });
   });
