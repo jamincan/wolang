@@ -205,4 +205,22 @@ describe('Tokenizer', () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+  describe('Line and Columns #s', () => {
+    it('0,0', () => {
+      tokenizer.init(`2101 "Bob"\nTest`);
+      assert.deepStrictEqual(tokenizer.getXY(), [0, 0]);
+    });
+    it('0,4', () => {
+      tokenizer.init(`2101 "Bob"\nTest`);
+      tokenizer.next();
+      assert.deepStrictEqual(tokenizer.getXY(), [0, 4]);
+    });
+    it('1,0', () => {
+      tokenizer.init(`2101 "Bob"\nTest`);
+      tokenizer.next();
+      tokenizer.next();
+      tokenizer.next();
+      assert.deepStrictEqual(tokenizer.getXY(), [1, 0]);
+    });
+  });
 });
