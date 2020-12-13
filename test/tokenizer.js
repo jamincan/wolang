@@ -36,6 +36,35 @@ describe('Tokenizer', () => {
       ];
       assert.deepStrictEqual(actual, expected);
     });
+    it('double dedent nested', () => {
+      tokenizer.init(`  \n    \n      \n  \n`);
+      const actual = Array.from(tokenizer).map((token) => token.type);
+      const expected = [
+        'INDENT',
+        'NEWLINE',
+        'INDENT',
+        'NEWLINE',
+        'INDENT',
+        'NEWLINE',
+        'DEDENT',
+        'DEDENT',
+        'NEWLINE',
+        'DEDENT',
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+    it('throws error with double indent', () => {
+      tokenizer.init(`    30\n`);
+      assert.throws(() => tokenizer.next(), SyntaxError);
+    });
+    it('throws error with odd indents', () => {
+      tokenizer.init(` 30\n`);
+      assert.throws(() => tokenizer.next(), SyntaxError);
+    });
+    it('throws error with odd dedents', () => {
+      tokenizer.init(`  20\n 30\n`);
+      assert.throws(() => Array.from(tokenizer), SyntaxError);
+    });
   });
   describe('Whitespace', () => {
     it('new lines', () => {
@@ -61,7 +90,7 @@ describe('Tokenizer', () => {
     it('Comment on line with other literal', () => {
       tokenizer.init(`21 # This is a comment\n"This is not."`);
       const actual = Array.from(tokenizer).map((token) => token.type);
-      const expected = ['INT', 'STRING'];
+      const expected = ['INT', 'NEWLINE', 'STRING'];
       assert.deepStrictEqual(actual, expected);
     });
   });
