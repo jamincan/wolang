@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import assert from 'assert';
-import Tokenizer from '../lib/Tokenizer';
+import Tokenizer from '../lib/tokenizer/tokenizer';
 
 const tokenizer = new Tokenizer();
 
