@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import assert from 'assert';
-import Parser from '../lib/Parser';
+import Parser from '../lib/parser';
 
 const parser = new Parser();
 
