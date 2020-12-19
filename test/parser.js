@@ -61,6 +61,25 @@ describe('Intensity', function () {
   });
 });
 
+describe('Intervals', function () {
+  it('interval without annotation', function () {
+    const actual = parser.parse(`1min @200W`);
+    const expected = {
+      type: 'Program',
+      body: Set(1, [Interval(60, { power: 200 })]),
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+  it('interval with annotation', function () {
+    const actual = parser.parse(`1min @200W "max effort"`);
+    const expected = {
+      type: 'Program',
+      body: Set(1, [Interval(60, { power: 200 }, 'max effort')]),
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+});
+
 describe('Sets', function () {
   it('simple single-line set', function () {
     const actual = parser.parse(`2x 1min @200W`);
