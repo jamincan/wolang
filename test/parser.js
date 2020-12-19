@@ -5,8 +5,8 @@ import { Interval, Set } from '../lib/nodes';
 
 const parser = new Parser();
 
-describe('Durations', () => {
-  it('seconds', () => {
+describe('Durations', function () {
+  it('seconds', function () {
     const actual = parser.parse(`35 sec 350W`);
     const expected = {
       type: 'Program',
@@ -14,10 +14,10 @@ describe('Durations', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('throw error with seconds as float', () => {
+  it('throw error with seconds as float', function () {
     assert.throws(() => parser.parse(`3.5 sec @200W`));
   });
-  it('minutes', () => {
+  it('minutes', function () {
     const actual = parser.parse(`2 Minutes @200W`);
     const expected = {
       type: 'Program',
@@ -25,7 +25,7 @@ describe('Durations', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('hours', () => {
+  it('hours', function () {
     const actual = parser.parse(`1.5 HRS @ 0.90`);
     const expected = {
       type: 'Program',
@@ -34,8 +34,8 @@ describe('Durations', () => {
     assert.deepStrictEqual(actual, expected);
   });
 });
-describe('Intensity', () => {
-  it('power', () => {
+describe('Intensity', function () {
+  it('power', function () {
     const actual = parser.parse(`15s 350W`);
     const expected = {
       type: 'Program',
@@ -43,7 +43,7 @@ describe('Intensity', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('percentFTP as percentage', () => {
+  it('percentFTP as percentage', function () {
     const actual = parser.parse(`120s 85%`);
     const expected = {
       type: 'Program',
@@ -51,7 +51,7 @@ describe('Intensity', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('percentFTP as plain number', () => {
+  it('percentFTP as plain number', function () {
     const actual = parser.parse(`30s 1.35`);
     const expected = {
       type: 'Program',
@@ -61,8 +61,8 @@ describe('Intensity', () => {
   });
 });
 
-describe('Sets', () => {
-  it('simple single-line set', () => {
+describe('Sets', function () {
+  it('simple single-line set', function () {
     const actual = parser.parse(`2x 1min @200W`);
     const expected = {
       type: 'Program',
@@ -70,7 +70,7 @@ describe('Sets', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('single-line set with 2 intervals', () => {
+  it('single-line set with 2 intervals', function () {
     const actual = parser.parse(`2x 1min @200W, 2min @170W`);
     const expected = {
       type: 'Program',
@@ -78,7 +78,7 @@ describe('Sets', () => {
     };
     assert.deepStrictEqual(actual, expected);
   });
-  it('should not allow float repeats', () => {
+  it('should not allow float repeats', function () {
     assert.throws(() => parser.parse(`2.5x 1min @200W`));
   });
 });
