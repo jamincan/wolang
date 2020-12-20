@@ -92,4 +92,35 @@ describe('Sets', function () {
     ];
     assert.deepStrictEqual(actual, expected);
   });
+  it('longer complex workout', function () {
+    const actual = parser.parse(
+      `
+10 min @ 0.75 "warmup"
+
+5x 30s 400W "max effort" 30s 0.5 "easy spin"
+5 min 0.7
+
+2x
+  10 min @280W "steady", 2 min @200W 30s @350W
+  60s @ 120W "easy recovery"
+  
+10 min @ 0.75 "cooldown"`
+    );
+    const expected = [
+      Interval(600, { percentFTP: 0.75 }, 'warmup'),
+      Set(5, [
+        Interval(30, { power: 400 }, 'max effort'),
+        Interval(30, { percentFTP: 0.5 }, 'easy spin'),
+      ]),
+      Interval(300, { percentFTP: 0.7 }),
+      Set(2, [
+        Interval(600, { power: 280 }, 'steady'),
+        Interval(120, { power: 200 }),
+        Interval(30, { power: 350 }),
+        Interval(60, { power: 120 }, 'easy recovery'),
+      ]),
+      Interval(600, { percentFTP: 0.75 }, 'cooldown'),
+    ];
+    assert.deepStrictEqual(actual, expected);
+  });
 });
