@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "babel src -d dist --presets=@babel/preset-env",
+    "build": "babel lib -d dist --presets=@babel/preset-env",
     "test": "mocha --require core-js --require @babel/register --reporter spec"
   },
   "repository": {
