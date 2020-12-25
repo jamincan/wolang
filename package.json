@@ -1,8 +1,8 @@
 {
-  "name": "wolang",
+  "name": "@jamincan/wolang",
   "version": "1.0.0",
   "description": "A human-friendly language for sharing cycling workouts.",
-  "main": "lib/index.js",
+  "main": "dist/parser.js",
   "directories": {
     "lib": "lib",
     "test": "tests"
