@@ -62,7 +62,8 @@ An interval is the basic component of a workout consisting of an intensity for a
 {
     type: 'Interval',
     duration: 120,
-    intensity: { type: 'Intensity', ... },
+    intensity: { type: 'Power', ... }, // Could also be type: 'PercentFTP'
+    annotation: "cooldown",            // Optional
 }
 ```
 
@@ -84,4 +85,113 @@ A set is a repeating block of intervals or sets.
         ...
     ]
 }
+```
+
+### Full Example
+
+Parser Input:
+
+```wolang
+10min @50% "warmup"
+2x 5 min @ 250W, 2 min @ 180W
+2 min @ 170W
+3x
+  1 min @ 280W
+  30s @ 170W
+  1 min @ 300W
+  30s @ 150W
+10min @ 50% "cooldown"
+```
+
+Parser Output:
+
+```javascript
+[
+    {
+        type: 'Interval',
+        duration: 600,
+        intensity: {
+            type: 'percentFTP',
+            value: 0.5
+        }
+        annotation: "warmup",
+    },
+    {
+        type: 'Set',
+        repeat: 2,
+        sets: [
+            {
+                type: 'Interval',
+                duration: 60,
+                intensity: {
+                    type: 'Power',
+                    value: 280,
+                }
+            },
+            {
+                type: 'Interval',
+                duration: 30,
+                intensity: {
+                    type: 'Power',
+                    value: 170,
+                }
+            },
+            {
+                type: 'Interval',
+                duration: 60,
+                intensity: {
+                    type: 'Power',
+                    value: 300,
+                }
+            },
+            {
+                type: 'Interval',
+                duration: 30,
+                intensity: {
+                    type: 'Power',
+                    value: 150,
+                }
+            }
+        ]
+    },
+    {
+        type: 'Interval',
+        duration: 120,
+        intensity: {
+            type: 'Power',
+            value: 170,
+        }
+    },
+       {
+        type: 'Set',
+        repeat: 2,
+        sets: [
+            {
+                type: 'Interval',
+                duration: 300,
+                intensity: {
+                    type: 'Power',
+                    value: 250,
+                }
+            },
+            {
+                type: 'Interval',
+                duration: 120,
+                intensity: {
+                    type: 'Power',
+                    value: 180,
+                }
+            }
+        ]
+    },
+    {
+        type: 'Interval',
+        duration: 600,
+        intensity: {
+            type: 'percentFTP',
+            value: 0.5
+        }
+        annotation: "cooldown",
+    },
+]
 ```
