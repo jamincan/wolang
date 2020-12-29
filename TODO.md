@@ -1,6 +1,6 @@
 # Tokenizer
 
-- [ ] Add @ marker
+- [x] Add @ marker
 
 # Parser
 
