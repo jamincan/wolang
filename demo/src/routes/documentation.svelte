@@ -1,13 +1,12 @@
 <script context="module">
-  import marked from 'marked';
   export async function preload(page, session) {
     const res = await this.fetch(
-      'https://raw.githubusercontent.com/jamincan/wolang/main/README.md'
+      'https://raw.githubusercontent.com/jamincan/wolang/main/DOCUMENTATION.md'
     );
-    const text = await res.text();
-    const doc = marked(text);
+    const markdown = await res.text();
+
     if (res.ok) {
-      return { doc };
+      return { markdown };
     } else {
       this.error(502, 'Unable to retrieve the documentation.');
     }
@@ -15,12 +14,14 @@
 </script>
 
 <script>
-  export let doc;
+  import Markdown from '../components/Markdown.svelte';
+
+  export let markdown;
 </script>
 
 <svelte:head>
   <title>Wolang - Documentation</title>
 </svelte:head>
 <section>
-  {@html doc}
+  <Markdown {markdown} />
 </section>

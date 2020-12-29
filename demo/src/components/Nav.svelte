@@ -4,14 +4,39 @@
 
 <style>
   nav {
-    border-bottom: 1px solid rgba(60, 255, 0, 0.1);
+    background: #efefff;
+  }
+  nav div {
+    max-width: 56em;
+    padding: 0 0.5em;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 6em 3em;
+    align-items: center;
+  }
+  h1 {
     font-family: 'Montserrat', sans-serif;
-    padding: 0 1em;
+    font-size: 8em;
+    font-weight: 400;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  h1 > strong {
+    text-decoration: underline;
+    text-decoration-color: rgb(60, 255, 0);
+  }
+
+  @media (min-width: 480px) {
+    h1 {
+      font-size: 4em;
+    }
   }
 
   ul {
     margin: 0;
     padding: 0;
+    text-align: center;
   }
 
   /* clearfix */
@@ -22,11 +47,8 @@
   }
 
   li {
-    display: block;
-    padding: 0 1em;
-    float: left;
+    display: inline-block;
   }
-
   [aria-current] {
     position: relative;
     display: inline-block;
@@ -41,7 +63,6 @@
     display: block;
     bottom: -1px;
   }
-
   a {
     text-decoration: none;
     padding: 1em 0.5em 0.5em;
@@ -50,22 +71,25 @@
 </style>
 
 <nav>
-  <ul>
-    <li>
-      <a aria-current={segment === undefined ? 'page' : undefined} href=".">Main</a>
-    </li>
-    <li>
-      <a
-        aria-current={segment === 'documentation' ? 'page' : undefined}
-        href="documentation">Documentation</a>
-    </li>
-    <li>
-      <a
-        aria-current={segment === 'langref' ? 'page' : undefined}
-        href="langref">Language Reference</a>
-    </li>
-    <li>
-      <a aria-current={segment === 'demo' ? 'page' : undefined} href="demo">Demo</a>
-    </li>
-  </ul>
+  <div>
+    <h1><strong>wo</strong>lang</h1>
+    <ul>
+      <li>
+        <a aria-current={segment === undefined ? 'page' : undefined} href=".">Main</a>
+      </li>
+      <li>
+        <a
+          aria-current={segment === 'documentation' ? 'page' : undefined}
+          href="documentation">Documentation</a>
+      </li>
+      <li>
+        <a
+          aria-current={segment === 'specification' ? 'page' : undefined}
+          href="specification">Specification</a>
+      </li>
+      <li>
+        <a aria-current={segment === 'demo' ? 'page' : undefined} href="demo">Demo</a>
+      </li>
+    </ul>
+  </div>
 </nav>

@@ -1,41 +1,26 @@
-<script>
-</script>
+<script context="module">
+  export async function preload(page, session) {
+    const res = await this.fetch(
+      'https://raw.githubusercontent.com/jamincan/wolang/main/README.md'
+    );
+    const markdown = await res.text();
 
-<style>
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  h1 > strong {
-    display: inline;
-    text-decoration: underline;
-    text-decoration-color: rgb(60, 255, 0);
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
+    if (res.ok) {
+      return { markdown };
+    } else {
+      this.error(502, 'Unable to retrieve the documentation.');
     }
   }
-</style>
+</script>
+
+<script>
+  import Markdown from '../components/Markdown.svelte';
+
+  export let markdown;
+</script>
 
 <svelte:head>
   <title>Wolang</title>
 </svelte:head>
 
-<h1><strong>wo</strong>lang</h1>
-
-<p>Wolang is a human-centric language for describing cycling workout.</p>
-<pre>
-  <code>
-# Sample Workout
-10 min @ 150W "warmup"
-2x 
-  5 min @ 250W
-  1 min @ 190W
-10 min @ 150W "cooldown"
-  </code>
-</pre>
+<Markdown {markdown} />
