@@ -6,11 +6,11 @@ There are a broad array of programs that deal with cycling workouts including tr
 
 The primary aim of Wolang is to be a language that is simple and easy to use directly. Coaches and athletes already communicate workouts in a concise, simple, and (usually) unambiguous way; Wolang attempts to formalize this language so it can also be used by computers.
 
-    ```wolang
-    # Example Program
-    10min @170W "warmup"
-    2x 5min @250W, 3min @220W, 60s @150W
-    10min @170W "cooldown"]
-    ```
+```wolang
+# Example Program
+10min @170W "warmup"
+2x 5min @250W, 3min @220W, 60s @150W
+10min @170W "cooldown"]
+```
 
 More information about the javascript parser included with this project can be found in the [Documentation](DOCUMENTATION.md)
