@@ -10,7 +10,7 @@ The primary aim of Wolang is to be a language that is simple and easy to use dir
 # Example Program
 10min @170W "warmup"
 2x 5min @250W, 3min @220W, 60s @150W
-10min @170W "cooldown"]
+10min @170W "cooldown"
 ```
 
 More information about the javascript parser included with this project can be found in the [Documentation](DOCUMENTATION.md)
