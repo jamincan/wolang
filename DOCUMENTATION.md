@@ -93,13 +93,13 @@ Parser Input:
 
 ```wolang
 10min @50% "warmup"
-2x 5 min @ 250W, 2 min @ 180W
-2 min @ 170W
 3x
   1 min @ 280W
   30s @ 170W
   1 min @ 300W
   30s @ 150W
+2 min @ 170W
+2x 5 min @ 250W, 2 min @ 180W
 10min @ 50% "cooldown"
 ```
 
@@ -118,7 +118,7 @@ Parser Output:
   },
   {
     type: 'Set',
-    repeat: 2,
+    repeat: 3,
     sets: [
       {
         type: 'Interval',
