@@ -107,91 +107,91 @@ Parser Output:
 
 ```javascript
 [
-    {
+  {
+    type: 'Interval',
+    duration: 600,
+    intensity: {
+      type: 'percentFTP',
+      value: 0.5,
+    },
+    annotation: 'warmup',
+  },
+  {
+    type: 'Set',
+    repeat: 2,
+    sets: [
+      {
         type: 'Interval',
-        duration: 600,
+        duration: 60,
         intensity: {
-            type: 'percentFTP',
-            value: 0.5
-        }
-        annotation: "warmup",
+          type: 'Power',
+          value: 280,
+        },
+      },
+      {
+        type: 'Interval',
+        duration: 30,
+        intensity: {
+          type: 'Power',
+          value: 170,
+        },
+      },
+      {
+        type: 'Interval',
+        duration: 60,
+        intensity: {
+          type: 'Power',
+          value: 300,
+        },
+      },
+      {
+        type: 'Interval',
+        duration: 30,
+        intensity: {
+          type: 'Power',
+          value: 150,
+        },
+      },
+    ],
+  },
+  {
+    type: 'Interval',
+    duration: 120,
+    intensity: {
+      type: 'Power',
+      value: 170,
     },
-    {
-        type: 'Set',
-        repeat: 2,
-        sets: [
-            {
-                type: 'Interval',
-                duration: 60,
-                intensity: {
-                    type: 'Power',
-                    value: 280,
-                }
-            },
-            {
-                type: 'Interval',
-                duration: 30,
-                intensity: {
-                    type: 'Power',
-                    value: 170,
-                }
-            },
-            {
-                type: 'Interval',
-                duration: 60,
-                intensity: {
-                    type: 'Power',
-                    value: 300,
-                }
-            },
-            {
-                type: 'Interval',
-                duration: 30,
-                intensity: {
-                    type: 'Power',
-                    value: 150,
-                }
-            }
-        ]
-    },
-    {
+  },
+  {
+    type: 'Set',
+    repeat: 2,
+    sets: [
+      {
+        type: 'Interval',
+        duration: 300,
+        intensity: {
+          type: 'Power',
+          value: 250,
+        },
+      },
+      {
         type: 'Interval',
         duration: 120,
         intensity: {
-            type: 'Power',
-            value: 170,
-        }
+          type: 'Power',
+          value: 180,
+        },
+      },
+    ],
+  },
+  {
+    type: 'Interval',
+    duration: 600,
+    intensity: {
+      type: 'percentFTP',
+      value: 0.5,
     },
-       {
-        type: 'Set',
-        repeat: 2,
-        sets: [
-            {
-                type: 'Interval',
-                duration: 300,
-                intensity: {
-                    type: 'Power',
-                    value: 250,
-                }
-            },
-            {
-                type: 'Interval',
-                duration: 120,
-                intensity: {
-                    type: 'Power',
-                    value: 180,
-                }
-            }
-        ]
-    },
-    {
-        type: 'Interval',
-        duration: 600,
-        intensity: {
-            type: 'percentFTP',
-            value: 0.5
-        }
-        annotation: "cooldown",
-    },
-]
+    annotation: 'cooldown',
+  },
+];
 ```
