@@ -1,0 +1,1 @@
+import{S as s,i as t,s as e,B as a}from"./client.7b718daa.js";async function r(s,t){const{slug:e}=s.params;return{slug:e.toLowerCase()}}function u(s,t,e){let{slug:r}=t;return"readme"===r&&(r=""),a(r,{replaceState:!0}),s.$$set=s=>{"slug"in s&&e(0,r=s.slug)},[r]}export default class extends s{constructor(s){super(),t(this,s,u,null,e,{slug:0})}}export{r as preload};
