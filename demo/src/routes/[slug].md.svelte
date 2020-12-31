@@ -14,7 +14,6 @@
 
 <script>
   import { goto } from '@sapper/app';
-  import Documentation from './documentation.svelte';
 
   export let slug;
 
