@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import assert from 'assert';
-import Parser from '../lib/parser';
-import { Interval, Set, Power, PercentFTP } from '../lib/nodes';
+import Parser from '../src/parser';
+import { Interval, Set, Power, PercentFTP } from '../src/nodes';
 
 const parser = new Parser();
 

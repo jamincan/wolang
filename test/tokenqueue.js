@@ -1,7 +1,7 @@
 import assert from 'assert';
-import Token from '../lib/tokenizer/token';
-import Tokenizer from '../lib/tokenizer/tokenizer';
-import TokenQueue from '../lib/tokenizer/tokenqueue';
+import Token from '../src/tokenizer/token';
+import Tokenizer from '../src/tokenizer/tokenizer';
+import TokenQueue from '../src/tokenizer/tokenqueue';
 
 let tokenizer = new Tokenizer();
 let queue = new TokenQueue(tokenizer);
