@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Montserrat:wght@400;700&family=Work+Sans&display=swap');
+body {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.5em 0;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+a {
+  color: inherit;
+}
+
+@media (min-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+}
