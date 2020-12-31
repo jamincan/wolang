@@ -9,7 +9,7 @@
     "start": "node __sapper__/build"
   },
   "dependencies": {
-    "@jamincan/wolang": "^1.0.2",
+    "@jamincan/wolang": "latest",
     "compression": "^1.7.1",
     "marked": "^1.2.7",
     "polka": "next",
