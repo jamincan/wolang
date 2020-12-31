@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Lib is a build product
-lib/
+lib
